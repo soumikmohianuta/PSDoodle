@@ -1,0 +1,150 @@
+/*!
+ * Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+}
+
+.header-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between ;
+  background-color: #f1f1f1;
+}
+
+.header-Ins-container {
+  background-color: #f1f1f1;
+  width: 200px;
+  margin: 10px;
+  text-align: center;
+
+}
+.header-title-container {
+  background-color: #f1f1f1;
+  width: 200px;
+  margin: 10px;
+  text-align: center;
+  font-family: 'Brush Script MT';
+  font-size: 35px;
+
+}
+.header-draw-container {
+  background-color: #f1f1f1;
+  width: 200px;
+  margin: 10px;
+  text-align: center;
+
+}
+.header-seperateIns-container {
+  background-color: #f1f1f1;
+  width: 400px;
+  margin: 10px;
+  text-align: center;
+
+}
+
+.draw-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+
+}
+
+.left-button-container{
+  margin: 5px;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-button {
+    height: 150px;
+}
+
+.canvas-container{
+  width: 510px;
+  margin: 5px;
+  text-align: center;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+}
+.result-container{
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.right-button-container{
+  margin: 5px;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.right-button {
+    height: 200px;
+}
+
+.sketchpad {
+    width: 500px;
+    height: 600px;
+}
+
+.sketchPadContainer {
+    background: #FFF;
+    width: 505px;
+    height: 605px;
+    border-style: groove;
+    Border-color: #D3D3D3
+}
+
+.maincontainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-width: 900px;
+}
+
+.code-container{
+  width: 510px;
+  margin: 5px;
+  text-align: center;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+}
+.layoutContainer {
+    background: #FFF;
+    width: 505px;
+    height: 605px;
+    border-style: groove;
+    Border-color: #D3D3D3
+}
+
+.htmlContainer {
+    width: 500px;
+    height: 600px;
+
+}
+
+.resultElement{
+  margin: 5px;
+}

@@ -1,0 +1,15 @@
+antlr-python3-runtime==3.4
+click==6.7
+Flask==0.12.2
+itsdangerous==0.24
+Jinja2==2.10
+lxml==4.1.1
+MarkupSafe==1.0
+mod-wsgi-httpd==2.4.27.1
+numpy==1.14.0
+opencv-python==3.4.0.12
+Pillow==5.0.0
+pkg-resources==0.0.0
+stringtemplate3==3.1
+tesserocr==2.2.2
+Werkzeug==0.14.1

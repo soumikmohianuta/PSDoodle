@@ -1,0 +1,182 @@
+/*!
+ * Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+}
+
+.header-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around ;
+  background-color: #f1f1f1;
+  margin: 5px 5px 5px 5px;
+  width:100%;
+}
+
+.intro-header-similar{
+    background-color: #f1f1f1;
+    background-size: cover;
+	border-bottom: 1px solid black;
+	width:100%;
+    min-width: 1024px;
+}
+
+.footer-container{
+    background-color: #f1f1f1;
+    width:100%;
+	height:150px;
+	min-width: 1024px;
+}
+
+.header-Ins-container {
+  background-color: #f1f1f1;
+  width: 120px;
+  margin: 10px;
+  text-align: center;
+
+}
+.header-title-container {
+  background-color: #f1f1f1;
+  width: 120px;
+  margin: 10px;
+  text-align: center;
+  font-family: 'Brush Script MT';
+  font-size: 20px;
+
+}
+.header-draw-container {
+  background-color: #f1f1f1;
+  width: 150px;
+  margin: 10px;
+  text-align: center;
+  height:60px;
+
+}
+.header-seperateIns-container {
+  background-color: #f1f1f1;
+  width: 300px;
+  margin: 10px;
+  text-align: center;
+  height:80px;
+}
+
+
+.left-button-container{
+  flex-direction: column;
+  display: flex;
+  justify-content: space-around;
+  width: 100px;
+  height:100%:
+}
+
+
+.left-single-button-container {
+    height: 150px;
+    width: 95%;
+}
+
+.left-single-button {
+    height: 60px;
+    width: 95%;
+}
+.canvas-container{
+  width: 510px;
+  margin: 5px;
+  text-align: center;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+}
+
+.right-button-container{
+  flex-direction: column;
+  display: flex;
+  justify-content: space-around;
+  width: 200px;
+  height:100%:
+}
+
+.right-single-button-container {
+    height: 150px;
+    width: 100px;
+}
+
+.right-prediction-container{
+    height: 150px;
+    width: 95%;
+}
+
+.right-single-button {
+    height: 90px;
+    width: 95%;
+}
+.button-image {
+    height: 95%;
+    width: 95%;
+}
+.sketchpad {
+    width: 500px;
+    height: 800px;
+}
+
+.sketchPadContainer {
+    background: #FFF;
+    width: 505px;
+    height: 805px;
+    border-style: groove;
+    Border-color: #D3D3D3
+}
+
+.mainContainer {
+  width: 100%;
+  margin: 5px 5px 5px 5px;
+  background-color: #F2EDEC;
+    display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.result-container{
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 300px;
+  height: 400px;
+}
+
+.result-Image{
+  width: 95%;
+  height: 50%;
+}
+.result-Button{
+  width: 95%;
+  height: 25%;
+}
+.page-container{
+    background-color: #F2EDEC;
+    width:100%;
+    min-width: 1024px;
+}
+.sim-container{
+  width: 100%;
+  margin: 5px 5px 5px 5px;
+  background-color: #F2EDEC;
+}

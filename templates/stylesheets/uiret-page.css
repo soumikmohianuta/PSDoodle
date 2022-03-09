@@ -1,0 +1,359 @@
+/*!
+ * Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+}
+
+.header-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around ;
+  background-color: #f1f1f1;
+  margin: 5px 5px 5px 5px;
+  width:100%;
+}
+.intro-header-retrival {
+    background-color: #f1f1f1;
+    background-size: cover;
+	border-bottom: 1px solid black;
+	width:100%;
+    min-width: 1024px;
+}
+.intro-footer-retrival {
+    background-color: #f1f1f1;
+    background-size: cover;
+	border-bottom: 1px solid black;
+	width:100%;
+	height:100%;
+    min-width: 1024px;
+}
+
+.footer-container{
+    background-color: #f1f1f1;
+    width:100%;
+	height:150px;
+	min-width: 1024px;
+}
+
+.header-Ins-container {
+  background-color: #f1f1f1;
+  width: 120px;
+  margin: 10px;
+  text-align: center;
+
+}
+.header-title-container {
+  background-color: #f1f1f1;
+  width: 120px;
+  margin: 10px;
+  text-align: center;
+  font-family: 'Brush Script MT';
+  font-size: 20px;
+
+}
+
+
+.header-draw-container {
+  background-color: #f1f1f1;
+  width: 150px;
+  margin: 10px;
+  text-align: center;
+  height:60px;
+
+}
+
+.header-info-tutorial {
+  background-color: #f1f1f1;
+  width: 50px;
+  margin: 10px;
+  height: 60 px;
+  text-align: center;
+
+}
+
+.header-seperateIns-container {
+  background-color: #f1f1f1;
+  width: 300px;
+  margin: 10px;
+  text-align: center;
+  height:80px;
+
+}
+
+.header-img{
+    max-width: 100%;
+}
+
+.relevant-button-container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  font-size: 20px;
+  width:100%;
+  height:7%;
+  margin:2px;
+
+}
+.relevant-button {
+   width:25%;
+   height:100%;
+}
+.relevant-ui-image {
+   width:100%;
+   height:100%;
+}
+
+.relevant-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 420px;
+  height: 720px;
+  margin: 0px 10px 10px 10px;
+}
+
+.relevant-end-Container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.relevant-end-main-Container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-width: 900px;
+}
+
+.relevant-main-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  min-width: 900px;
+  flex-direction: row;
+}
+
+
+
+
+.left-button-selection{
+    height: 300px;
+    flex-grow: 2;
+}
+
+.instruction-image-container{
+  width:80%;
+  margin: 5px;
+  text-align: center;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  height: 700px;
+  max-width: 800px;
+}
+
+.instruction-Image {
+    background: #FFF;
+    width: 1020px;
+    height: 805px;
+    border-style: groove;
+    Border-color: #D3D3D3
+}
+
+
+.result-container{
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+.sim-container{
+  width: 100%;
+  margin: 5px 5px 5px 5px;
+  background-color: #F2EDEC;
+}
+
+.sketchpad {
+    width: 400px;
+    height: 700px;
+}
+
+.sketchPadContainer {
+    background: #FFF;
+    width: 400px;
+    height: 705px;
+    border-style: groove;
+    Border-color: #D3D3D3
+}
+
+.page-container{
+    background-color: #F2EDEC;
+    width:100%;
+    min-width: 1024px;
+}
+
+.maincontainer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 5px 5px 5px 5px;
+  background-color: #F2EDEC;
+}
+
+.maincontainer-tutorial {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction:row;
+  width: 100%;
+  margin: 5px 5px 5px 5px;
+  background-color: #F2EDEC;
+  justify-content: center;
+}
+
+.right-button-tutoial-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width:10%;
+  max-width: 100px;
+}
+
+.right-button-tutoial{
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width:100%;
+  height:240px;
+  background-color: #F2EDEC;
+}
+.targetContainer {
+
+    border-radius: 0px;
+    margin: 0px 5px 5px 0px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.imgContainer {
+    width: 400px;
+    border-radius: 0px;
+}
+
+.rel-image-container {
+    width: 400px;
+    border-radius: 0px;
+    height: 85%;
+    margin:2px;
+}
+.relevant-text-container{
+    width: 100%;
+    height: 5%;
+    margin:1px;
+    text-align: center;
+    font-size: 20px;
+}
+.target-image {
+    width: 100%;
+    border-radius: 0px;
+}
+
+.draw-container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+
+}
+.left-button-container{
+  flex-direction: column;
+  display: flex;
+  justify-content: space-around;
+  width: 60px;
+  height:100%:
+}
+
+
+.left-single-button-container {
+    height: 150px;
+    width: 95%;
+}
+
+.left-single-button {
+    height: 60px;
+    width: 95%;
+}
+
+.right-button-container{
+  flex-direction: column;
+  display: flex;
+  justify-content: space-around;
+  min-width: 100px;
+  height:100%:
+}
+.right-single-button-container {
+    height: 100px;
+    width: 100px;
+}
+
+.right-single-button {
+    height: 90px;
+    width: 95%;
+}
+
+.button-image {
+    height: 95%;
+    width: 95%;
+}
+
+.right-prediction-container{
+    height: 100px;
+    width: 100%;
+}
+
+.canvas-container{
+  width: 410px;
+  margin: 5px;
+  text-align: center;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.result-container{
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 300px;
+  height: 400px;
+}
+
+.result-Image{
+  width: 95%;
+  height: 50%;
+}
+.result-Button{
+  width: 95%;
+  height: 25%;
+}

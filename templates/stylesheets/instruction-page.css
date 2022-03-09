@@ -1,0 +1,59 @@
+/*!
+ * Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+}
+    
+.flex-container{
+      justify-content: center;
+      align-items: center;
+  
+    }
+    
+.instructcontent {
+        display: none;
+        }
+        
+.instructbutton {
+        margin-top: 30px;
+        }
+
+.instructback {
+        display: none;
+        }
+
+.instructnext {
+        margin-left: 50px;
+        }
+
+.instructend {
+        display: none;
+    }
+    
+.previous {
+      display: none;
+      background-color: #f1f1f1;
+      color: black;
+    }
+
+.next {
+      background-color: #4CAF50;
+      color: white;
+    }

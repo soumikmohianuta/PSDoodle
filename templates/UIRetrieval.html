@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Sketch to App : Enabling Pencil to Code.">
+    <title>Doodle 2 UI Code</title>
+
+
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.799.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <script src="../javascripts/FullSketchPad.js"></script>
+    <link href="../stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../stylesheets/uiretrivecom-page.css" rel="stylesheet">
+    <link href="../stylesheets/uiret-page.css" rel="stylesheet">
+    <link href="../stylesheets/uiretrivesidenav-page.css" rel="stylesheet">
+    <link href="../stylesheets/uiretriveimagenav-page.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Muli:300' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .myfont {
+            font-family: 'Muli';
+            font-weight: 200;
+        }
+    </style>
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-64561447-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    <style>
+ #simcontainer {
+            border: 1px solid red;
+            background: #eee;
+            width: 90%;
+            height: 1200px;
+            padding: 10px 10px 10px 10px;
+            overflow-y: scroll
+}
+        
+#simcontainer img {
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            width: 150px;
+            margin: 5px 5px 5px 5px
+}
+#simcontainer img:hover {
+                box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+    </style>
+
+
+</head>
+<!-- Navigation -->
+
+
+<div class="intro-header-retrival" id="div_id_NormalHeader">
+    <div class="header-container">
+        <div class="header-Ins-container">
+            <span class="spanStyle" onclick="openNav()">&#9776; Cheat sheet</span>
+        </div>
+
+        <div class="header-title-container">
+            <p> Search-by-Sketch </p>
+        </div>
+        <div class="header-draw-container ">
+            <img class="button-image" src="../images/DrawHereright.png" />
+        </div>
+
+        <div class="header-seperateIns-container">
+            <img class="button-image"  id="upperInstruction" src="../images/UpInstruction1.png"  />
+        </div>
+    </div>
+</div>
+
+<!-- /.container -->
+
+<div class="page-container" id="div_id_drawing">
+  <div class="maincontainer">
+
+    <div class="targetContainer" id="targetImageContainer">
+        <p>Target UI</p>
+
+        <div class="imgContainer" id="targetImage">
+                <img class="target-image" class="imgContainerImg" id="LabelID" src="../images/blank.png" alt="Smiley face" height="640"/>
+        </div>
+       
+    </div>
+    
+    <div class="draw-container">
+      <div class="left-button-container" id="sketchPadLeftButtonContainer">
+      
+            <div class="left-single-button-container" id="undoLabel">
+                      <button class="left-single-button" onclick="undo()" id ="undoButton"><img class="button-image" src="../images/undo.jpg" /></button>
+                      <p class="button-text">Undo Strokes</p>
+            </div>
+
+
+            <div class="left-single-button-container" >
+                      <button class="left-single-button" onclick="redo()"  ><img class="button-image" src="../images/redo.jpg"/></button>
+                      <p class="button-text">Redo Strokes</p>
+            </div>
+               
+            <div class="left-single-button-container"  id="removeLabel">
+                   <button class="left-single-button" onclick="removeIcon()"  ><img class="button-image" src="../images/remove_icon.png"/></button>
+                      <p class="button-text">Remove Last Element</p>
+            </div>
+
+          <div class="left-single-button-container" id="successLabel">
+                      <div class="left-single-button">
+                        <a href="{{ url_for('SimilarUIRoutes.SuccessRelevance') }}"><img class="button-image" src="../images/success.png"/></a>
+                      </div>
+                      <p class="button-text">Retrieved Successfully</p>
+          </div>
+
+          <div class="left-single-button-container" id="failureLabel">
+                      <div class="left-single-button">
+                        <a  href="{{ url_for('SimilarUIRoutes.FailureRelevance') }}"><img class="button-image" src="../images/failure.png"/></a>
+                      </div>
+                      <p class="button-text">Failed</p>
+          </div>
+            
+
+      </div>
+      <div class="canvas-container">
+                 <div class="sketchPadContainer" id="sketchPadContainer">
+                      <canvas class="sketchpad" id="sketchpad"></canvas>
+                  </div>
+
+      </div>
+      <div class="right-button-container" id="sketchPadRightButtonContainer">
+
+                  
+
+                 <div class="right-prediction-container" id="progressLabel">
+                      <p>Current predictions:</p>
+                      <input type="radio" id="PredictionRBTN0" name="grp1" value=0 onclick="onClassSelect(value);"><br>
+                      <label id="Prediction0" ></label><br>
+                      <input type="radio" id="PredictionRBTN1"  name="grp1" onclick="onClassSelect(value);" value=1><br>
+                      <label id="Prediction1" ></label><br>
+                      <input type="radio" id="PredictionRBTN2"  name="grp1" value=2 onclick="onClassSelect(value);"><br>
+                      <label id="Prediction2" ></label>
+                </div>
+
+                 <div class="right-single-button-container" id="redoLabel">
+                     <button class="right-single-button" onclick="doDoubleTap()"  id ="redoButton"><img class="button-image" src="../images/selection.png"></button></button>
+                      <p class="button-text">Icon done</p>
+                </div>
+                <div class="right-single-button-container"  id="startNewLabel">
+                      <a class="right-single-button" href="{{ url_for('SimilarUIRoutes.UIRetrieval') }}"><img class="button-image"  src="../images/Startnew.png" alt="Smiley face" /></a>
+                </div>
+
+        </div>
+    </div>
+   </div>
+   
+    <div class="row sim-container">
+        <center>
+            <div class="col">
+                 <div id="simcontainer">
+                      <h1>  Retrieved UI</h1>
+                  </div>
+               <button id="btnPrevious">
+                    &lt; Previous
+               </button>
+                <span id="page"></span>
+               <button id="btnNext">
+                &gt; Next
+               </button>
+
+            </div>
+        </center>
+      </div>
+</div> 
+
+<div id="myImagenav" class="imagenav">
+              <img src="../images/AllLeftPanelInstructions.png" width="400" height="600" id="myImagenavExpndImg" />
+</div>  
+        
+<div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <p >Cheat sheet to draw</p>
+          <img src="../images/AllLeftPanelInstructions.png" width="600" />
+</div>
+    <!-- FOOTER  -->
+   <footer class="footer-container">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <ul class="list-inline">
+              <li class="footer-menu-divider">&sdot;</li>
+              <li>
+                <a href="https://forms.gle/nfPVBQQnzHTT7TCG8">Feedback</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      var sketchpad;
+      var  sketchData = null ;
+      var sketchCount = 0;
+      var interValIDs = [];
+      var widthofSketchPad = document.getElementById('sketchpad').offsetWidth;
+      var heightofSketchPad = document.getElementById('sketchpad').offsetHeight;
+   //   var sketchStack = [];
+      $(document).ready(function() {
+        sketchpad = new Sketchpad({
+          element: '#sketchpad',
+          width:  400,
+          height: 700
+        });
+        $('#color-picker').change(color);
+        $('#color-picker').val('#000');
+        $('#size-picker').change(size);
+        $('#size-picker').val(0.5);
+      });
+
+      // Update top instruction at regular interval
+      var instructionCount = 1;
+      setInterval(setTopImage, 5000);
+      function setTopImage(value){
+            instructionCount++;
+            if(instructionCount>7) instructionCount = 1;
+            imgElement = document.getElementById("upperInstruction")
+		    imgElement.src = "../images/UpInstruction"+instructionCount.toString() +".png";
+
+       }
+
+      document.addEventListener( "keydown", doKeyDown, true);
+      // on drawing selected from prediction invoke this function
+      function onClassSelect(value){
+	           $.post("/ClassSelect/", {selectClassLabel: value }, function(err, req, resp){
+            }); 
+    	}
+	 var curPage = 1;
+     var similarDataArray = [];
+     // For mid predict set radio labels
+     function addPredictionData(dictObj){
+          var keyval=0;
+            for (var key in dictObj) {
+				var rdbuttonLabel = document.getElementById("Prediction"+ keyval.toString());
+                rdbuttonLabel.innerHTML = dictObj[key][0] + ' ' + dictObj[key][2] + '%';
+				keyval = keyval +1;
+            
+          }
+          document.getElementById("PredictionRBTN0").click();
+          document.getElementById("PredictionRBTN0").checked="checked"
+
+      }
+      
+// clear prediction for drawing completion
+      function clearPredictionData(){
+            for (var keyval = 0; keyval < 3; keyval++) {
+				var rdbuttonLabel = document.getElementById("Prediction"+ keyval.toString());
+                rdbuttonLabel.innerHTML = "";
+            	document.getElementById("PredictionRBTN"+ keyval.toString()).checked=false;
+          }
+      }
+
+//expand a search drawing and fetch it from S3 from the image ID
+
+      function expandImage(imgs) {
+          document.getElementById("myImagenav").style.width = "400px";
+          var expandImg = document.getElementById("myImagenavExpndImg");
+          var srcImage = "https://ricoimage.s3.us-east-2.amazonaws.com/OnlyImage/"+imgs.name+".jpg"; 
+          expandImg.src = srcImage;
+          expandImg.parentElement.style.display = "block";
+      }
+      // when mouse up fetch prediction
+      function mouseup1() {
+        
+            var  newsketchData = JSON.stringify(sketchpad.strokes)
+            if (newsketchData != sketchData  ){
+            sketchData = newsketchData;
+            $.post("/MidPredictSimilar/", {save_data: sketchData }, function(err, req, resp){
+                if (resp["responseJSON"]["predictedResult"] != "Unchanged" ){
+                      addPredictionData(resp["responseJSON"]["predictedResult"]);  
+                  }
+            });  
+            onClassSelect(0);       
+            }
+            if(sketchpad.strokes.length==0){
+                  clearPredictionData();
+            }
+             
+      }
+      // From the fetched image create gallery .
+      function setSimilarUI(dataArraY){
+     	   var container = document.getElementById('simcontainer'); 
+         while (container.firstChild) {
+            container.removeChild(container.firstChild);
+            	}
+       	 var i;
+       	  $('#simcontainer').append('<h2> Top Picks </h2>');
+          for (i = 0; i < dataArraY.length; i++) {
+               // var srcImage = "../similarUIImage/"+dataArraY[i]+".jpg"; 
+                var srcImage = "https://ricoimage.s3.us-east-2.amazonaws.com/thumbnails/"+dataArraY[i]+".jpg";   
+                var imgElement = '<img src='+srcImage+' loading="lazy"  height="267" name='+dataArraY[i]+' onclick="expandImage(this)" />';
+               $('#simcontainer').append(imgElement);     
+       }
+       }
+       
+       
+
+// Deal with previous button in the search gallery
+        $("#btnPrevious").click(function() {
+          if (curPage != 1 && similarDataArray.length != 0) {
+              curPage--;
+              var lLim = (curPage-1)*80;
+              var uLim = curPage*80;
+              var dataArray = similarDataArray.slice(lLim,uLim);
+              setSimilarUI(dataArray);
+              }
+
+            });
+// Deal with next button in the search gallery
+        $("#btnNext").click(function() {
+            var totoalImage = similarDataArray.length;
+          if(curPage*80 < totoalImage  && totoalImage != 0){
+              curPage++;
+              var lLim = (curPage-1)*80;
+              var uLim = curPage*80;
+              if (uLim > totoalImage) {
+                  uLim = totalImage;
+              }
+
+              var dataArray = similarDataArray.slice(lLim,uLim);
+              setSimilarUI(dataArray);
+          }
+
+        });
+
+
+    // Set the left image when page loads
+	   setTimeout(setUIISimilarImage, 0);
+			     
+      function setUIISimilarImage(){
+         imgElement = document.getElementById("LabelID")
+          $.post("/setUIISimilarImage/", {save_data: sketchData }, function(err, req, resp){
+					  imgElement.src = resp["responseJSON"]["image"];
+					  
+            });
+      }
+      
+      // function to deal with done icon
+      function doDoubleTap() {
+            if(sketchpad.strokes.length !=0){
+            sketchpad.pustoStack();
+            var  newsketchData = JSON.stringify(sketchpad.strokes)
+            sketchData = newsketchData;
+            $.post("/DrawSaveForCompare/", {save_data: sketchData }, function(err, req, resp){
+               if (resp["responseJSON"]["predictedResult"] != "Unchanged" ){
+                      similarDataArray =resp["responseJSON"]["similarUI"];
+                      var dataArray = similarDataArray.slice(0,80); 
+                      setSimilarUI(dataArray);
+                      curPage = 1;
+                    }
+            });        
+             sketchpad.clearAll();
+             sketchpad.drawStrokes();
+              clearPredictionData();
+            }
+
+        }
+    function doKeyDown(e) {
+
+            if ( e.keyCode == 68 ) {
+                doDoubleTap();
+            }
+
+        }
+        
+        
+// Remove drawing from the canvas and update search result
+       function removeIcon() {
+            if(sketchpad.strokesStack.length>0){
+                 sketchpad.clearAll();
+                 sketchpad.strokesStack.pop();
+                 var  newsketchData = JSON.stringify(sketchpad.strokes)
+                 sketchpad.drawStrokes();
+                 clearPredictionData();  
+                $.post("/RemoveLastIconForSimilarCompare/", {save_data: newsketchData }, function(err, req, resp){
+                      similarDataArray =resp["responseJSON"]["similarUI"];
+                      var dataArray = similarDataArray.slice(0,80); 
+                      setSimilarUI(dataArray);
+                      curPage = 1;
+                     });
+            }
+        }
+        
+
+
+      document.addEventListener("touchstart", closeimageNav);
+      document.addEventListener("mousedown", closeimageNav);
+      document.addEventListener("mouseup", mouseup1);
+      document.addEventListener("touchend", mouseup1);
+      document.addEventListener("dblclick",doDoubleTap);
+      setTimeout(setcanvaswidth, 1000);
+     // Set canvas at the beginning
+      function setcanvaswidth(){
+             var  canvasWidth = JSON.stringify(widthofSketchPad)
+             var canvasHeight = JSON.stringify(heightofSketchPad)
+          $.post("/SetCanvasSize/", {canvas_width: canvasWidth, canvas_height: canvasHeight }, function(err, req, resp){
+            });   
+      }
+        
+      function undo() { 
+        sketchpad.undo();
+        mouseup1();
+        
+      }
+      function redo() {
+        sketchpad.redo();
+        mouseup1();
+      }
+      function color(event) {
+        sketchpad.color = $(event.target).val();
+      }
+      function size(event) {
+        sketchpad.penSize = $(event.target).val();
+      }
+
+      function openNav() {
+          document.getElementById("mySidenav").style.width = "600px";
+        }
+
+      function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+        }
+
+       $(document).off(function() {
+
+      });
+      function closeimageNav() {
+          document.getElementById("myImagenav").style.width = "0";
+          document.getElementById("mySidenav").style.width = "0";
+        }
+      
+    </script>
+
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      try {
+        var pageTracker = _gat._getTracker("UA-59165581-1");
+        pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
+  </body>
+</html>

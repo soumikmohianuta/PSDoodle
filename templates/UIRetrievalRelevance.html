@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Sketch to App : Enabling Pencil to Code.">
+    <title>Doodle 2 UI Code</title>
+
+
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.799.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <script src="../javascripts/CanvasToShow.js"></script>
+    <link href="../stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../stylesheets/uiretrivecom-page.css" rel="stylesheet">
+    <link href="../stylesheets/uiret-page.css" rel="stylesheet">
+    <link href="../stylesheets/uiretrivesidenav-page.css" rel="stylesheet">
+    <link href="../stylesheets/uiretriveimagenav-page.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Muli:300' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .myfont {
+            font-family: 'Muli';
+            font-weight: 200;
+        }
+
+    </style>
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-64561447-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+</head>
+<!-- Navigation -->
+
+
+
+<!-- /.container -->
+
+<div class="page-container" id="div_id_drawing">
+  <div class="maincontainer" id="mainElements">
+    <div class="draw-container">
+      <div class="sketchPadContainer" id="sketchPadContainer">
+             <canvas class="sketchpad" id="sketchpad"></canvas>
+      </div>
+    </div>
+    <div class="relevant-container">
+        <p class="relevant-text-container"> Is the UI screen relevant to your drawing?</p>
+        <div class="relevant-button-container" id="targetButtonContainer">
+            <button class="relevant-button" onclick="setRelevance()"><img class="button-image" src="../images/yes_rel.png"></button>
+            <button class="relevant-button" onclick="setNotRelevance()" ><img class="button-image" src="../images/no_rel.png"></button>
+        </div>
+
+        <div class="rel-image-container" id="targetImageContainer">
+                <img class="relevant-ui-image" id="targetImage" src="../images/happy.gif" alt="Smiley face"/>
+         </div>
+    </div>
+  </div>
+
+    <div class="relevant-end-main-Container" id="endMessage">
+        <div class="result-container" id="endImageContainer">
+                      <div class="result-Image">
+                          <img class="button-image" id="resultShowImage" src="../images/happy.gif" alt="Smiley face" />
+                      </div>
+                      <div  class="result-Button">
+                          <a class="button-image" class="button-image" href="{{ url_for('SimilarUIRoutes.UIRetrieval') }}"><img class="button-image"  src="../images/AnotherTry.png" alt="Smiley face"/></a>
+                      </div>
+        </div>
+    </div>
+
+</div>
+
+    <!-- FOOTER  -->
+   <footer class="footer-container">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <ul class="list-inline">
+              <li class="footer-menu-divider">&sdot;</li>
+              <li>
+                <a href="https://forms.gle/nfPVBQQnzHTT7TCG8">Feedback</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      var sketchpad;
+      var widthofSketchPad = document.getElementById('sketchpad').offsetWidth;
+      var heightofSketchPad = document.getElementById('sketchpad').offsetHeight;
+      var imageObject = [];
+      var savedStrokes = [];
+      var curPage =0;
+      var feedbackRel = [0,0,0,0,0,0,0,0,0,0];
+      $(document).ready(function() {
+        sketchpad = new Sketchpad({
+          element: '#sketchpad',
+          width:  500,
+          height: 800
+        });
+        $('#color-picker').change(color);
+        $('#color-picker').val('#000');
+        $('#size-picker').change(size);
+        $('#size-picker').val(0.5);
+      });
+
+      function drawStrokes() {
+           sketchpad.clearAll();
+           for(var k=0;k<savedStrokes.length;k++){
+                 var singleDrawing = savedStrokes[k];
+
+                 for(var i=0;i<singleDrawing.length;i++){
+                     var xLines = singleDrawing[i][0];
+                     var yLines = singleDrawing[i][1];
+                     for(var j=0;j<xLines.length-1;j++){
+
+                          sketchpad._drawlineArray(xLines[j],yLines[j],xLines[j+1],yLines[j+1]);
+                     }
+                 }
+           }
+      }
+
+
+      function saveRelevance(){
+           var feedback = JSON.stringify(feedbackRel)
+           $.post("/SaveRelevance/", {save_data: feedback }, function(err, req, resp){
+
+            });
+      }
+
+       function nextClick() {
+
+         if(curPage < 9){
+              curPage++;
+              var curImage = "https://ricoimage.s3.us-east-2.amazonaws.com/OnlyImage/"+imageObject[curPage]+".jpg";
+              document.getElementById("targetImage").src=curImage;
+          }
+          else{
+                saveRelevance();
+                document.getElementById("mainElements").style.height="0";
+                document.getElementById("mainElements").style.visibility='hidden';
+
+
+                document.getElementById("endMessage").style.height="500px"
+                document.getElementById("endMessage").style.visibility="visible"
+                document.getElementById("endImage").src = "../images/happy.png"
+                document.getElementById("endErrorMessage").innerHTML = "Thanks for using the tool."
+          }
+
+      }
+      setTimeout(setPage, 0);
+
+      function setPage(){
+
+          $.post("/setPageForRelevance/", function(err, req, resp){
+					  imageObject = resp["responseJSON"]["image"];
+					  savedStrokes = resp["responseJSON"]["sketch"];
+
+					  if(imageObject.length != 0)
+                        {
+
+
+                            var curImage = "https://ricoimage.s3.us-east-2.amazonaws.com/OnlyImage/"+imageObject[curPage]+".jpg";
+
+
+                            document.getElementById("targetImage").src=curImage;
+                            document.getElementById("endMessage").style.height="0"
+                            document.getElementById("endMessage").style.visibility="hidden";
+
+                        }
+                        else{
+                            document.getElementById("mainElements").style.height="0";
+                            document.getElementById("mainElements").style.visibility='hidden';
+
+                            document.getElementById("endMessage").style.height="500px"
+                            document.getElementById("endMessage").style.visibility="visible"
+                            document.getElementById("endImage").src = "../images/sad.png"
+                            document.getElementById("endErrorMessage").innerHTML = "Not A Valid Query"
+                        }
+          });
+
+      }
+      function setRelevance() {
+            feedbackRel[curPage] = 1;
+            nextClick();
+      }
+      function setNotRelevance() {
+            nextClick();
+      }
+
+    setTimeout(drawStrokes, 1000);
+
+      
+    </script>
+
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      try {
+        var pageTracker = _gat._getTracker("UA-59165581-1");
+        pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
+  </body>
+</html>
